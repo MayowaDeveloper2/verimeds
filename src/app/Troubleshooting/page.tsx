@@ -8,10 +8,10 @@ const Troubleshooting = () => {
             <div>
                 <header className='flex justify-between items-center w-full pt-4 pb-4'>
                     <div>
-                        <a href="#"><img src="/Frame45.png" alt="Logo" /></a>
+                        <a href="#"><img src="/arrow.png" alt="Arrow" /></a>
                     </div>
                     <div>
-                        <a href="#"><img src="/Vector.png" alt="Menu" /></a>
+                        <a href="#"><img src="/Frame45.png" alt="Logo" /></a>
                     </div>
                 </header>
                 <div className='text-start flex pt-3 pb-3'>
