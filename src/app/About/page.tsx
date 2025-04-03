@@ -6,7 +6,7 @@ const About = () => {
     <div>
         <div>
             <div>
-                <header className='flex justify-between items-center w-full pt-3 pb-3'>
+                <header className='flex justify-between items-center w-full pt-4 pb-4'>
                     <div>
                         <a href="#"><img src="/Frame45.png" alt="Logo" /></a>
                     </div>
