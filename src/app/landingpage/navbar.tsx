@@ -38,12 +38,12 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="hover:text-[#2d495d]">
+                        <Link href="/report" className="hover:text-[#2d495d]">
                             Report
                         </Link>
                     </li>
                     <li>
-                        <Link href="/contact-us" className="hover:text-[#2d495d]">
+                        <Link href="/" className="hover:text-[#2d495d]">
                            Contact Us
                         </Link>
                     </li>
@@ -66,12 +66,12 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li className="mt-4">
-                        <Link href="/" className="hover:text-[#2d495d]">
+                        <Link href="/report" className="hover:text-[#2d495d]">
                             Report
                         </Link>
                     </li>
                     <li className="mt-4">
-                        <Link href="/contact-us" className="hover:text-[#2d495d]">
+                        <Link href="/" className="hover:text-[#2d495d]">
                             Contact Us
                         </Link>
                     </li>
