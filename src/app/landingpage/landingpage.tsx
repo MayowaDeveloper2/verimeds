@@ -19,10 +19,10 @@ export default function Body() {
                 </div>
                 <div className="flex flex-col gap-5  lg:flex-row mt-[30px] lg:mt-[40px] w-full justify-center lg:items-center">
                     <Link href="/activate-scanner" className="lg:w-[350px] ">
-                        <button className="lg:w-[350px] flex items-center justify-center h-[60px] bg-[#007BFF] px-3 py-2 rounded-[200px] text-white"> <LuScanLine className="text-[#ffffff] mr-2 text-[24px]" />Scan Barcode Now</button>
+                        <button className="lg:w-[350px] w-[350px] flex items-center justify-center h-[60px] bg-[#007BFF] px-3 py-2 rounded-[200px] text-white"> <LuScanLine className="text-[#ffffff] mr-2 text-[24px]" />Scan Barcode Now</button>
                     </Link>
                     
-                    <button className="lg:w-[350px] flex items-center  justify-center h-[60px] border-[2px] border-[#007BFF] px-3 py-2 rounded-[200px] text-black mt-[20px] lg:mt-[0px]"><MdOutlineKeyboard className="text-[#007BFF] mr-2 text-[24px]" /> Enter Barcode</button>
+                    <button className="lg:w-[350px] w-[350px] flex items-center  justify-center h-[60px] border-[2px] border-[#007BFF] px-3 py-2 rounded-[200px] text-black mt-[20px] lg:mt-[0px]"><MdOutlineKeyboard className="text-[#007BFF] mr-2 text-[24px]" /> Enter Barcode</button>
 
                 </div>
 
