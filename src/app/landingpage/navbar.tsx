@@ -28,12 +28,12 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="hover:text-[#2d495d]">
+                        <Link href="/about" className="hover:text-[#2d495d]">
                             About Verimeds
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="hover:text-[#2d495d]">
+                        <Link href="/troubleshooting" className="hover:text-[#2d495d]">
                             Troubleshooting
                         </Link>
                     </li>
@@ -56,12 +56,12 @@ export default function Navbar() {
             <div className={`fixed bg-[#092A41] z-50 h-screen top-0 left-0 w-[300px] text-white ps-2 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <ul className="mt-10 ">
                     <li >
-                        <Link href="/" className="hover:text-[#2d495d]">
+                        <Link href="/about" className="hover:text-[#2d495d]">
                             About Verimeds
                         </Link>
                     </li>
                     <li className="mt-4">
-                        <Link href="/" className="hover:text-[#2d495d]">
+                        <Link href="/troubleshooting" className="hover:text-[#2d495d]">
                             Troubleshooting
                         </Link>
                     </li>
