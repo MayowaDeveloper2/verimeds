@@ -17,7 +17,7 @@ const Troubleshooting = () => {
                     <div>
                         <a href="#"><img src="/Frame45.png" alt="Logo" /></a>
                     </div>
-                </header>
+                </header> 
                 <div className='text-start flex pt-3 pb-3'>
                     <h1>Troubleshooting Tips for Scanning</h1>
                 </div>
