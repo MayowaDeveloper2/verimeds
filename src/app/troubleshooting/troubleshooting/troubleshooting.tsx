@@ -1,8 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 
+import Image from 'next/image';
 import React from 'react'
+import { BsArrowLeft } from 'react-icons/bs';
+import verimedsLogo from '../../media/verimeds logo.png'
 
 const Troubleshooting = () => {
   return (
@@ -11,11 +13,11 @@ const Troubleshooting = () => {
         <div>
             <div>
                 <header className='flex justify-between items-center w-full pt-4 pb-4'>
-                    <div>
-                        <a href="#"><img src="/arrow.png" alt="Arrow" /></a>
+                    <div className='cursor-pointer' onClick={() => window.history.back()}>
+                    <BsArrowLeft className='text-[2rem]'/>
                     </div>
-                    <div>
-                        <a href="#"><img src="/Frame45.png" alt="Logo" /></a>
+                    <div >
+                              <Image src={verimedsLogo} alt="Logo"/>
                     </div>
                 </header> 
                 <div className='text-start flex pt-3 pb-3'>

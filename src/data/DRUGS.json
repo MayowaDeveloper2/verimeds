@@ -1,0 +1,42 @@
+[
+  {
+    "barcode": "1234567890123",
+    "name": "Paracetamol",
+    "manufacturer": "Pharma Inc.",
+    "activeIngredients": "Paracetamol 500mg",
+    "dosage": "Tablet",
+    "description": "Used to treat mild to moderate pain and fever.",
+    "expiryDate": "2026-12-31",
+    "batchNumber": "BATCH-PARA-001"
+  },
+  {
+    "barcode": "9876543210987",
+    "name": "Ibuprofen",
+    "manufacturer": "MediCare Ltd.",
+    "activeIngredients": "Ibuprofen 200mg",
+    "dosage": "Capsule",
+    "description": "Nonsteroidal anti-inflammatory drug (NSAID).",
+    "expiryDate": "2023-08-01",
+    "batchNumber": "BATCH-IBU-007"
+  },
+  {
+    "barcode": "3216549870123",
+    "name": "Amoxicillin",
+    "manufacturer": "BioPharm Co.",
+    "activeIngredients": "Amoxicillin 250mg",
+    "dosage": "Suspension",
+    "description": "Antibiotic used for bacterial infections.",
+    "expiryDate": "2025-09-15",
+    "batchNumber": "BATCH-AMX-324"
+  },
+  {
+    "barcode": "4561237890456",
+    "name": "Cetirizine",
+    "manufacturer": "AllergyRelief Inc.",
+    "activeIngredients": "Cetirizine 10mg",
+    "dosage": "Tablet",
+    "description": "Used for treating allergies and hay fever.",
+    "expiryDate": "2022-11-10",
+    "batchNumber": "BATCH-CET-019"
+  }
+]

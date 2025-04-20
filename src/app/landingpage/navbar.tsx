@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { useState } from "react";
@@ -18,7 +17,7 @@ export default function Navbar() {
 
     return(
         <>
-            <nav className='w-full bg-[#d5f7ff] flex justify-end gap-[80px] lg:justify-between lg:px-[100px] h-[126px] items-center px-[20px] '>
+            <nav className='sticky top-0 w-full shadow-md bg-[#d5f7ff] z-[999] text-black flex justify-end gap-[80px] lg:justify-between lg:px-[100px] h-[100px] items-center px-[20px] '>
                 <Image src={verimedslogo} alt="Verimeds" />
                 <ul className='lg:flex text-[16px] gap-[32px] sharpsans hidden'>
 
