@@ -61,7 +61,7 @@ export default function Body() {
 
             const result = await res.json();
             console.log('API response:', result);
-            
+
             // Check the status from the API response
             if (result.status === "authenticated") {
                 setIsDrugFound(true);
@@ -129,31 +129,64 @@ export default function Body() {
                     if (code) handleDetected(code);
                 });
 
-                await Quagga.start();
+                Quagga.start();
                 setIsStarted(true);
             } else {
                 const regionId = "qr-reader";
                 html5QrCodeRef.current = new Html5Qrcode(regionId);
-                const cameras = await Html5Qrcode.getCameras();
 
-                if (!cameras.length) {
-                    throw new Error("No camera devices found.");
+                try {
+                    // First try to use the back camera with facingMode: "environment"
+                    await html5QrCodeRef.current.start(
+                        { facingMode: { exact: "environment" } },
+                        { fps: 10, qrbox: { width: 250, height: 250 } },
+                        (decodedText) => handleDetected(decodedText),
+                        (scanErr) => console.warn("QR scan error", scanErr)
+                    );
+                } catch (err) {
+                    console.warn("Could not start with environment camera, trying alternative method", err);
+
+                    // Fallback: try with regular environment mode (not exact)
+                    try {
+                        await html5QrCodeRef.current.start(
+                            { facingMode: "environment" },
+                            { fps: 10, qrbox: { width: 250, height: 250 } },
+                            (decodedText) => handleDetected(decodedText),
+                            (scanErr) => console.warn("QR scan error", scanErr)
+                        );
+                    } catch (err2) {
+                        console.warn("Could not start with environment camera, falling back to camera selection", err2);
+
+                        // Final fallback: use camera selection
+                        const cameras = await Html5Qrcode.getCameras();
+
+                        if (!cameras.length) {
+                            throw new Error("No camera devices found.");
+                        }
+
+                        // Try to find a back camera by looking for "back" in the label
+                        const backCamera = cameras.find(camera =>
+                            camera.label.toLowerCase().includes('back') ||
+                            camera.label.toLowerCase().includes('rear') ||
+                            camera.label.toLowerCase().includes('environment'));
+
+                        // Use the back camera if found, otherwise use the first available camera
+                        await html5QrCodeRef.current.start(
+                            backCamera ? backCamera.id : cameras[0].id,
+                            { fps: 10, qrbox: { width: 250, height: 250 } },
+                            (decodedText) => handleDetected(decodedText),
+                            (scanErr) => console.warn("QR scan error", scanErr)
+                        );
+                    }
                 }
-
-                await html5QrCodeRef.current.start(
-                    cameras[0].id,
-                    { fps: 10, qrbox: { width: 250, height: 250 } },
-                    (decodedText) => handleDetected(decodedText),
-                    (scanErr) => console.warn("QR scan error", scanErr)
-                );
 
                 setIsStarted(true);
             }
         } catch (err) {
-            if (err instanceof Error) { 
+            if (err instanceof Error) {
                 const errorMsg = err.message || String(err);
                 setError(`Failed to start ${scannerType} scanner: ${errorMsg}`);
-            } 
+            }
             await stopScanner();
         } finally {
             setIsProcessing(false);
