@@ -91,7 +91,7 @@ export default function Activate() {
           <div className="absolute top-0 left-0 w-full h-[2px] bg-yellow-400 animate-scan-line" />
           {/* Scanner Targets */}
           <div id="qr-reader" className="w-full h-full absolute" />
-          <div ref={quaggaRef} className="w-full h-full absolute" />
+          <div ref={quaggaRef} className="w-full h-full absolute hidden" />
         </div>
 
         <div className="flex flex-col mt-[30px] lg:mt-[40px] w-full justify-center lg:items-center">

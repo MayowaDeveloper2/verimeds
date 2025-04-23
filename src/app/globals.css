@@ -28,3 +28,21 @@ body {
   color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@theme {
+  --animate-scan-line: scan-line 2s linear infinite;
+
+  @keyframes scan-line {
+    0% {
+      top: 0%;
+    }
+    100% {
+      top: 100%;
+    }
+  }
+}
+
+.animate-scan-line {
+  animation: var(--animate-scan-line);
+}
+
