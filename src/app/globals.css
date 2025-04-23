@@ -30,7 +30,7 @@ body {
 }
 
 @theme {
-  --animate-scan-line: scan-line 2s linear infinite;
+  --animate-scan-line: scan-line 20s linear infinite;
 
   @keyframes scan-line {
     0% {
