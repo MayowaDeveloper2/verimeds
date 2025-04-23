@@ -88,9 +88,11 @@ export default function Activate() {
           <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-yellow-500" />
           <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-yellow-500" />
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-yellow-500" />
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-yellow-400 animate-scan-line" />
+          {scanning && (
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-yellow-400 animate-scan-line" />
+          )}
           {/* Scanner Targets */}
-          <div id="qr-reader" className="w-full h-full absolute" />
+          <div id="qr-reader" className="w-full h-[383.75px] absolute" />
           <div ref={quaggaRef} className="w-full h-full absolute hidden" />
         </div>
 
