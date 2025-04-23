@@ -3,7 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Navbar from "@/app/landingpage/navbar";
-import Quagga from 'quagga'; // @ts-ignore if types fail
+import Quagga from 'quagga'; 
 import { Html5Qrcode } from 'html5-qrcode';
 
 export default function Activate() {
