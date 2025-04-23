@@ -4,7 +4,13 @@
 import { useEffect, useRef, useState } from 'react';
 import Navbar from "@/app/landingpage/navbar";
 import Quagga from 'quagga'; 
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeScannerState } from 'html5-qrcode';
+
+type QuaggaResult = {
+  codeResult: {
+    code: string;
+  };
+};
 
 export default function Activate() {
   const quaggaRef = useRef<HTMLDivElement>(null);
@@ -30,7 +36,7 @@ export default function Activate() {
           return;
         }
         Quagga.start();
-        Quagga.onDetected((data: any) => {
+        Quagga.onDetected((data: QuaggaResult) => {
           console.log('Barcode detected:', data.codeResult.code);
           Quagga.stop();
         });
@@ -46,12 +52,12 @@ export default function Activate() {
     html5QrCode.start(
       { facingMode: "environment" },
       config,
-      (decodedText) => {
+      (decodedText: string) => {
         console.log(`QR Code detected: ${decodedText}`);
         html5QrCode.stop().catch(console.error);
       },
-      (errorMessage) => {
-        // console.warn('QR scan error', errorMessage);
+      (errorMessage: string) => {
+        console.warn('QR scan error:', errorMessage);
       }
     ).catch(console.error);
   };
