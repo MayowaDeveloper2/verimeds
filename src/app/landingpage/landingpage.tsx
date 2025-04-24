@@ -421,7 +421,7 @@ export default function Body() {
                         type="text"
                         placeholder="Enter barcode manually and press Enter"
                         value={manualInput}
-                        onChange={(e) => setManualInput(e.target.value)}
+                        onChange={(e) => setManualInput(e.target.value) }
                         onKeyDown={handleManualKeyDown}
                         className="w-full px-4 py-2 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
                     />

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from 'next/image';
-import verimedslogo from "../media/verimeds logo.png"
+import verimedslogo from "../media/Verimeds Logo.svg"
 import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
