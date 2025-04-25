@@ -78,7 +78,7 @@ export default function DrugVerification() {
                 <Image src={barcode} alt="barcode" className="w-[265px] lg:w-[400px]" />
               </div>
 
-              <div className="w-full sm:px-0">
+              <div className="w-full  flex items-center sm:px-0">
                 <InputOTP
                   maxLength={13}
                   value={manualInput}
