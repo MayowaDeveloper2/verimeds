@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -224,12 +223,12 @@ export default function Activate() {
     }
   };
 
-  useEffect(() => {
-    return () => {
-      Quagga.stop();
-      html5QrCodeRef.current?.stop().catch(() => {});
-    };
-  }, []);
+    useEffect(() => {
+        return () => {
+            stopScanner();
+        };
+    }, [stopScanner]);
+
 
   return (
     <>
@@ -311,7 +310,7 @@ export default function Activate() {
             <span className="font-medium underline cursor-pointer">Click here for tips.</span>
           </div>
         </div>
+
       </div>
-    </>
-  );
+    );
 }
