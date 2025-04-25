@@ -58,6 +58,7 @@ export default function DrugVerification() {
 
       setMessage(data.message);
     } catch (error) {
+      console.error('Verification error:', error);
       setStatus('fake');
       setMessage('An error occurred during verification.');
     } finally {
