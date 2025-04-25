@@ -152,11 +152,33 @@ export default function Body() {
                 const regionId = "qr-reader";
                 html5QrCodeRef.current = new Html5Qrcode(regionId);
 
+                // Configure QR code scanner with enhanced settings
+                const qrConfig = {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 },
+                    experimentalFeatures: {
+                        useBarCodeDetectorIfSupported: true
+                    },
+                    rememberLastUsedCamera: true,
+                    aspectRatio: 1.0,
+                    formatsToSupport: [
+                        'QR_CODE',
+                        'DATA_MATRIX',
+                        'UPC_A',
+                        'UPC_E',
+                        'EAN_13',
+                        'EAN_8',
+                        'CODE_39',
+                        'CODE_93',
+                        'CODE_128'
+                    ]
+                };
+
                 try {
                     // First try to use the back camera with facingMode: "environment"
                     await html5QrCodeRef.current.start(
                         { facingMode: { exact: "environment" } },
-                        { fps: 10, qrbox: { width: 250, height: 250 } },
+                        qrConfig,
                         (decodedText) => handleDetected(decodedText),
                         (scanErr) => console.warn("QR scan error", scanErr)
                     );
@@ -167,7 +189,7 @@ export default function Body() {
                     try {
                         await html5QrCodeRef.current.start(
                             { facingMode: "environment" },
-                            { fps: 10, qrbox: { width: 250, height: 250 } },
+                            qrConfig,
                             (decodedText) => handleDetected(decodedText),
                             (scanErr) => console.warn("QR scan error", scanErr)
                         );
@@ -190,7 +212,7 @@ export default function Body() {
                         // Use the back camera if found, otherwise use the first available camera
                         await html5QrCodeRef.current.start(
                             backCamera ? backCamera.id : cameras[0].id,
-                            { fps: 10, qrbox: { width: 250, height: 250 } },
+                            qrConfig,
                             (decodedText) => handleDetected(decodedText),
                             (scanErr) => console.warn("QR scan error", scanErr)
                         );
@@ -376,6 +398,17 @@ export default function Body() {
                 {!isStarted && !scannedResult && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center p-4">
                         <p>Click &quot;Start Scanner&quot; to activate the camera</p>
+                    </div>
+                )}
+
+                {isStarted && !isProcessing && (
+                    <div className="absolute top-2 right-2 z-10">
+                        <button
+                            onClick={stopScanner}
+                            className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-full shadow-md flex items-center justify-center"
+                        >
+                            <span className="mr-1">✕</span> Stop Camera
+                        </button>
                     </div>
                 )}
 

@@ -38,5 +38,49 @@
     "description": "Used for treating allergies and hay fever.",
     "expiryDate": "2022-11-10",
     "batchNumber": "BATCH-CET-019"
+  },
+  {
+    "barcode": "MED-ASPIRIN-500MG",
+    "qrCode": true,
+    "name": "Aspirin",
+    "manufacturer": "HealthCare Pharmaceuticals",
+    "activeIngredients": "Acetylsalicylic acid 500mg",
+    "dosage": "Tablet",
+    "description": "Used to reduce pain, fever, and inflammation.",
+    "expiryDate": "2025-06-30",
+    "batchNumber": "BATCH-ASP-123"
+  },
+  {
+    "barcode": "MED-LORATADINE-10MG",
+    "qrCode": true,
+    "name": "Loratadine",
+    "manufacturer": "AllergyRelief Inc.",
+    "activeIngredients": "Loratadine 10mg",
+    "dosage": "Tablet",
+    "description": "Antihistamine used to treat allergy symptoms.",
+    "expiryDate": "2024-12-15",
+    "batchNumber": "BATCH-LOR-456"
+  },
+  {
+    "barcode": "https://verimeds.com/verify?id=MED-OMEPRAZOLE-20MG",
+    "qrCode": true,
+    "name": "Omeprazole",
+    "manufacturer": "GastroHealth Ltd.",
+    "activeIngredients": "Omeprazole 20mg",
+    "dosage": "Capsule",
+    "description": "Proton pump inhibitor used to reduce stomach acid.",
+    "expiryDate": "2026-03-22",
+    "batchNumber": "BATCH-OME-789"
+  },
+  {
+    "barcode": "{\"product\":\"Metformin\",\"strength\":\"500mg\",\"id\":\"MET500\"}",
+    "qrCode": true,
+    "name": "Metformin",
+    "manufacturer": "DiabetesCare Inc.",
+    "activeIngredients": "Metformin hydrochloride 500mg",
+    "dosage": "Tablet",
+    "description": "Oral diabetes medicine that helps control blood sugar levels.",
+    "expiryDate": "2025-11-05",
+    "batchNumber": "BATCH-MET-101"
   }
 ]
