@@ -87,34 +87,34 @@ export default function DrugVerification() {
                 >
                   <div className="flex gap-1">
                     <InputOTPGroup>
-                      <InputOTPSlot index={0} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={1} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={2} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={0} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={1} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={2} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
                     </InputOTPGroup>
                   </div>
                   <InputOTPSeparator className="hidden sm:inline-block" />
                   <div className="flex gap-1">
                     <InputOTPGroup>
-                      <InputOTPSlot index={3} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={4} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={5} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={3} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={4} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={5} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
                     </InputOTPGroup>
                   </div>
                   <InputOTPSeparator className="hidden sm:inline-block" />
                   <div className="flex gap-1">
                     <InputOTPGroup>
-                      <InputOTPSlot index={6} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={7} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={8} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={9} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={6} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={7} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={8} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={9} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
                     </InputOTPGroup>
                   </div>
                   <InputOTPSeparator className="hidden sm:inline-block" />
                   <div className="flex gap-1">
                     <InputOTPGroup>
-                      <InputOTPSlot index={10} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={11} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
-                      <InputOTPSlot index={12} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={10} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={11} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
+                      <InputOTPSlot index={12} className="xs:w-5 xs:h-7 sm:w-5 sm:h-7 lg:w-10 lg:h-10" />
                     </InputOTPGroup>
                   </div>
                 </InputOTP>
