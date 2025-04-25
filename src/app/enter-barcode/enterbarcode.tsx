@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/input-otp";
 import barcode from "../media/Barcode Gen Z.png";
 import Navbar from "../landingpage/navbar";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 interface LookupResultType {
-  status?: 'authenticated' | 'not_found' | 'error';
   barcode?: string;
   name?: string;
   manufacturer?: string;
@@ -16,7 +16,6 @@ interface LookupResultType {
   description?: string;
   expiryDate?: string;
   batchNumber?: string;
-  message: string;
 }
 
 export default function DrugVerification() {
@@ -24,7 +23,7 @@ export default function DrugVerification() {
   const [status, setStatus] = useState<'valid' | 'expired' | 'fake' | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [lookupResult, setLookupResult] = useState<LookupResultType | null>(null); // ✅ ADD THIS STATE
+  const [lookupResult, setLookupResult] = useState<LookupResultType | null>(null);
 
   const handleManualSubmit = async () => {
     if (manualInput.length !== 13) return;
@@ -32,7 +31,7 @@ export default function DrugVerification() {
     setLoading(true);
     setMessage('');
     setStatus(null);
-    setLookupResult(null); // ✅ Clear old result
+    setLookupResult(null);
 
     try {
       const res = await fetch('/api/verify-medicine', {
@@ -41,11 +40,12 @@ export default function DrugVerification() {
         body: JSON.stringify({ barcode: manualInput })
       });
 
-      const data: LookupResultType = await res.json();
+      const data = await res.json();
 
       switch (data.status) {
         case 'authenticated':
           setStatus('valid');
+          setLookupResult(data.medicine); // ✅ Grab medicine from API
           break;
         case 'not_found':
           setStatus('fake');
@@ -57,7 +57,6 @@ export default function DrugVerification() {
       }
 
       setMessage(data.message);
-      setLookupResult(data); // ✅ Save the result to state
     } catch (error) {
       setStatus('fake');
       setMessage('An error occurred during verification.');
@@ -85,7 +84,6 @@ export default function DrugVerification() {
                   onChange={setManualInput}
                   className="flex flex-wrap justify-center gap-2"
                 >
-                  {/* Input slots here (unchanged) */}
                   <div className="flex gap-1">
                     <InputOTPGroup>
                       <InputOTPSlot index={0} className="xs:w-5 xs:h-7 lg:w-10 lg:h-10" />
@@ -131,14 +129,22 @@ export default function DrugVerification() {
             </div>
           )}
 
-          {/* Display result */}
           <div className="mt-8 text-center">
             {status === 'valid' && lookupResult && (
               <div>
                 <p className="text-xl font-bold text-black">{lookupResult.name}</p>
                 <p className="text-sm text-gray-500">by {lookupResult.manufacturer}</p>
 
-                <div className="mt-3 text-left w-full">
+                {/* Check if expired */}
+                <div className="flex flex-col items-center">
+                  {new Date(lookupResult.expiryDate ?? '') < new Date() ? (
+                      <FaTimes className="text-[4rem] text-red-500 mb-2" />
+                  ) : (
+                      <FaCheck className="text-[4rem] text-green-600 mb-2" />
+                  )}
+                </div>
+
+                <div className="mt-3 text-left w-full space-y-1">
                   <div className='flex items-center space-x-1'>
                     <p className="font-medium">Name:</p>
                     <p className="text-gray-700 font-semibold">{lookupResult.name}</p>
@@ -147,12 +153,82 @@ export default function DrugVerification() {
                     <p className="font-medium">Manufacturer:</p>
                     <p className="text-gray-700 font-semibold">{lookupResult.manufacturer}</p>
                   </div>
+                  <div className='flex items-center space-x-1'>
+                    <p className="font-medium">Dosage:</p>
+                    <p className="text-gray-700 font-semibold">{lookupResult.dosage}</p>
+                  </div>
+                  <div className='flex items-center space-x-1'>
+                    <p className="font-medium">Ingredients:</p>
+                    <p className="text-gray-700 font-semibold">{lookupResult.activeIngredients}</p>
+                  </div>
+                  <div className='flex items-center space-x-1'>
+                    <p className="font-medium">Description:</p>
+                    <p className="text-gray-700 font-semibold">{lookupResult.description}</p>
+                  </div>
+                  <div className='flex items-center space-x-1'>
+                    <p className="font-medium">Expiry:</p>
+                    <p className="text-gray-700 font-semibold">{lookupResult.expiryDate}</p>
+                  </div>
+                  <div className='flex items-center space-x-1'>
+                    <p className="font-medium">Batch No.:</p>
+                    <p className="text-gray-700 font-semibold">{lookupResult.batchNumber}</p>
+                  </div>
+                  <div className='flex items-center space-x-1'>
+                      <p className="font-medium">Expiry Date:</p>
+                      <p className={`font-semibold ${new Date(lookupResult.expiryDate ?? '') < new Date() ? 'text-red-500' : 'text-gray-700'}`}>
+                          {new Date(lookupResult.expiryDate ?? '') < new Date()
+                              ? `Expired on ${lookupResult.expiryDate}`
+                              : lookupResult.expiryDate}
+                      </p>
+                  </div>
                 </div>
               </div>
             )}
 
-            {status === 'expired' && (
-              <Image src="/expire.png" alt="Expired Medication" width={300} height={400} />
+            {status === 'expired' && lookupResult && (
+              <div>
+              <p className="text-xl font-bold text-black">{lookupResult.name}</p>
+              <p className="text-sm text-gray-500">by {lookupResult.manufacturer}</p>
+
+              <div className="mt-3 text-left w-full space-y-1">
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Name:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.name}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Manufacturer:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.manufacturer}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Dosage:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.dosage}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Ingredients:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.activeIngredients}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Description:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.description}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Expiry:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.expiryDate}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                  <p className="font-medium">Batch No.:</p>
+                  <p className="text-gray-700 font-semibold">{lookupResult.batchNumber}</p>
+                </div>
+                <div className='flex items-center space-x-1'>
+                    <p className="font-medium">Expiry Date:</p>
+                    <p className={`font-semibold ${new Date(lookupResult.expiryDate ?? '') < new Date() ? 'text-red-500' : 'text-gray-700'}`}>
+                        {new Date(lookupResult.expiryDate ?? '') < new Date()
+                            ? `Expired on ${lookupResult.expiryDate}`
+                            : lookupResult.expiryDate}
+                    </p>
+                </div>
+              </div>
+            </div>
             )}
             {status === 'fake' && (
               <Image src="/drug is fake.png" alt="Fake Medication" width={300} height={400} />

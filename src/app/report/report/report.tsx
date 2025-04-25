@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
-import verimedsLogo from '../../media/verimeds logo.png';
+import verimedsLogo from '../../media/Verimeds Logo.svg';
 
 export default function Report() {
     const [formData, setFormData] = useState({

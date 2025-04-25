@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import React from 'react'
 import { BsArrowLeft } from 'react-icons/bs';
-import verimedsLogo from '../../media/verimeds logo.png'
+import verimedsLogo from '../../media/Verimeds Logo.svg'
 
 const Troubleshooting = () => {
   return (

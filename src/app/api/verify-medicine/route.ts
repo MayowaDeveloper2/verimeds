@@ -10,16 +10,18 @@ export async function POST(request: Request) {
     if (medicine) {
       return NextResponse.json({
         status: "authenticated",
+        message: "Medicine successfully verified.",
         medicine,
       });
     }
+   
 
     return NextResponse.json({
       status: "not_found",
       message: "No medicine found for the given barcode.",
     });
   } catch (error) {
-    console.log('error: ', error)
+    console.error('Server error:', error);
     return NextResponse.json(
       {
         status: "error",
