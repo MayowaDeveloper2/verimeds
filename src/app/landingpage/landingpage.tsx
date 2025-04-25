@@ -65,7 +65,22 @@ export default function Body() {
             // Check the status from the API response
             if (result.status === "authenticated") {
                 setIsDrugFound(true);
-                setLookupResult(result.medicine);
+                // Make sure we're setting the medicine data correctly
+                const medicineData = result.medicine || {};
+                console.log('Medicine data to display:', medicineData);
+
+                // Ensure all required fields are present with fallbacks
+                setLookupResult({
+                    message: result.message || "Medicine found",
+                    barcode: medicineData.barcode || barcode,
+                    name: medicineData.name || "Unknown name",
+                    manufacturer: medicineData.manufacturer || "Unknown manufacturer",
+                    activeIngredients: medicineData.activeIngredients || "Not specified",
+                    dosage: medicineData.dosage || "Not specified",
+                    description: medicineData.description || "No description available",
+                    expiryDate: medicineData.expiryDate || "Unknown",
+                    batchNumber: medicineData.batchNumber || "Unknown"
+                });
             } else if (result.status === "not_found") {
                 setIsDrugFound(false);
                 setLookupResult({ message: "No matching medicine found in our database." });
@@ -79,6 +94,8 @@ export default function Body() {
             console.error("Error looking up barcode:", err);
             setError(`Failed to look up barcode: ${err instanceof Error ? err.message : String(err)}`);
             setIsDrugFound(false);
+            // Set a default lookupResult with an error message
+            setLookupResult({ message: `Error: ${err instanceof Error ? err.message : String(err)}` });
         } finally {
             setIsLookingUp(false);
         }
@@ -302,31 +319,42 @@ export default function Body() {
                                     {isDrugFound ? (
                                         <>
                                             {/* Check if expired */}
-                                            {new Date(lookupResult.expiryDate ?? '') < new Date() ? (
+                                            {lookupResult.expiryDate && new Date(lookupResult.expiryDate) < new Date() ? (
                                                 <FaTimes className="text-[4rem] text-red-500 mb-2" />
                                             ) : (
                                                 <FaCheck className="text-[4rem] text-green-600 mb-2" />
                                             )}
 
-                                            <p className="text-xl font-bold text-black">{lookupResult.name}</p>
-                                            <p className="text-sm text-gray-500">by {lookupResult.manufacturer}</p>
+                                            <p className="text-xl font-bold text-black">{lookupResult.name || 'Unknown Medicine'}</p>
+                                            <p className="text-sm text-gray-500">by {lookupResult.manufacturer || 'Unknown Manufacturer'}</p>
 
                                             <div className="mt-3 text-left w-full">
                                                 <div className='flex items-center space-x-1'>
                                                     <p className="font-medium">Name:</p>
-                                                    <p className="text-gray-700 font-semibold">{lookupResult.name}</p>
+                                                    <p className="text-gray-700 font-semibold">{lookupResult.name || 'Unknown'}</p>
                                                 </div>
                                                 <div className='flex items-center space-x-1'>
                                                     <p className="font-medium">Manufacturer:</p>
-                                                    <p className="text-gray-700 font-semibold">{lookupResult.manufacturer}</p>
+                                                    <p className="text-gray-700 font-semibold">{lookupResult.manufacturer || 'Unknown'}</p>
                                                 </div>
                                                 <div className='flex items-center space-x-1'>
                                                     <p className="font-medium">Expiry Date:</p>
-                                                    <p className={`font-semibold ${new Date(lookupResult.expiryDate ?? '') < new Date() ? 'text-red-500' : 'text-gray-700'}`}>
-                                                        {new Date(lookupResult.expiryDate ?? '') < new Date()
-                                                            ? `Expired on ${lookupResult.expiryDate}`
-                                                            : lookupResult.expiryDate}
+                                                    <p className={`font-semibold ${lookupResult.expiryDate && new Date(lookupResult.expiryDate) < new Date() ? 'text-red-500' : 'text-gray-700'}`}>
+                                                        {lookupResult.expiryDate ?
+                                                            (new Date(lookupResult.expiryDate) < new Date()
+                                                                ? `Expired on ${lookupResult.expiryDate}`
+                                                                : lookupResult.expiryDate)
+                                                            : 'Unknown'
+                                                        }
                                                     </p>
+                                                </div>
+                                                <div className='flex items-center space-x-1'>
+                                                    <p className="font-medium">Active Ingredients:</p>
+                                                    <p className="text-gray-700 font-semibold">{lookupResult.activeIngredients || 'Not specified'}</p>
+                                                </div>
+                                                <div className='flex items-center space-x-1'>
+                                                    <p className="font-medium">Dosage:</p>
+                                                    <p className="text-gray-700 font-semibold">{lookupResult.dosage || 'Not specified'}</p>
                                                 </div>
                                             </div>
                                         </>
@@ -412,6 +440,16 @@ export default function Body() {
                 >
                     <MdOutlineKeyboard className="mr-2 text-lg" />
                     Enter Barcode
+                </button>
+
+                {/* Debug button to test with a known valid barcode */}
+                <button
+                    onClick={() => {
+                        handleBarcodeLookup('1234567890123'); // This is a valid barcode from the DRUGS.json file
+                    }}
+                    className="relative cursor-pointer border-2 border-purple-500 text-purple-500 hover:bg-purple-50 font-bold py-3 px-8 rounded-full"
+                >
+                    Test Valid Barcode
                 </button>
             </div>
 
