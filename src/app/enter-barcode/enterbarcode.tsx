@@ -6,6 +6,8 @@ import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/comp
 import barcode from "../media/Barcode Gen Z.png";
 import Navbar from "../landingpage/navbar";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import red from "../media/red.svg";
+import greencheck from "../media/greencheck.svg";
 
 interface LookupResultType {
   barcode?: string;
@@ -133,15 +135,26 @@ export default function DrugVerification() {
           <div className="mt-8 text-center">
             {status === 'valid' && lookupResult && (
               <div>
-                <p className="text-xl font-bold text-black">{lookupResult.name}</p>
-                <p className="text-sm text-gray-500">by {lookupResult.manufacturer}</p>
+                
 
                 {/* Check if expired */}
                 <div className="flex flex-col items-center">
                   {new Date(lookupResult.expiryDate ?? '') < new Date() ? (
-                      <FaTimes className="text-[4rem] text-red-500 mb-2" />
+                     <Image src={red} alt="red" />
                   ) : (
-                      <FaCheck className="text-[4rem] text-green-600 mb-2" />
+                      <Image src={greencheck} alt="green" />
+                  )}
+                </div>
+                <div className="flex flex-col items-center">
+                  {new Date(lookupResult.expiryDate ?? '') < new Date() ? (
+                     <div> 
+
+                      <div className="text-[20px]"> EXPIRED</div>
+                      <div className="text-red mt-[20px]">This medication has expired; Do not use</div>
+                     </div>
+                    
+                  ) : (
+                      <div className="text-[#008000] text-[20px]"> AUTHENTIC MEDICATION</div>
                   )}
                 </div>
 
@@ -182,6 +195,18 @@ export default function DrugVerification() {
                               : lookupResult.expiryDate}
                       </p>
                   </div>
+
+                  <div className="flex flex-col items-center">
+                    {new Date(lookupResult.expiryDate ?? '') < new Date() ? (
+                      <div> 
+
+                        
+                      </div>
+                      
+                    ) : (
+                        <div className="text-[#008000] mt-5"> This medication has been verified as authentic and safe to use</div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -217,7 +242,7 @@ export default function DrugVerification() {
                   <p className="text-gray-700 font-semibold">{lookupResult.expiryDate}</p>
                 </div>
                 <div className='flex items-center space-x-1'>
-                  <p className="font-medium">Batch No.:</p>
+                  <p className="font-medium">Batch Number:</p>
                   <p className="text-gray-700 font-semibold">{lookupResult.batchNumber}</p>
                 </div>
                 <div className='flex items-center space-x-1'>

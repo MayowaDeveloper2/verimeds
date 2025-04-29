@@ -279,7 +279,7 @@ export default function Body() {
                 </button>
             </div>
 
-            <div ref={scannerRef} className="h-[400px] border w-full max-w-lg relative">
+            <div ref={scannerRef} className="h-[400px] animate-scan-line border w-full max-w-lg relative">
                 {scannerType === 'qrcode' && <div id="qr-reader" className="w-full h-full" />}
 
                 {scannedResult && (
