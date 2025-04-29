@@ -258,9 +258,9 @@ export default function DrugVerification() {
             </div>
             )}
             {status === 'fake' && (
-              <div>
+              <div className="flex flex-col items-center mt-4">
                  <div className="text-[20px] text-[#FF0000]"> DRUG IS FAKE</div>
-                 <Image src={fake} alt="Fake Medication" width={300} height={400} />
+                 <Image src={fake} alt="Fake Medication" />
                  <div className=" text-[#DD2E44] text-black">No matching medicine found in our database; drug is considered to be fake: Do not use.</div>
                 <div className="text-black"><Link href="/report">
   <span className="text-underline">Report now</span>

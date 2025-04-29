@@ -7,6 +7,10 @@ import Quagga from '@ericblade/quagga2';
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { Html5Qrcode } from "html5-qrcode";
 import Navbar from '@/app/landingpage/navbar';
+import fake from "../media/red.svg";
+import greencheck from "../media/greencheck.svg";
+import red from "../media/red.svg";
+import Image from 'next/image';
 
 interface LookupResultType {
     status?: 'authenticated' | 'not_found' | 'error';
@@ -301,9 +305,9 @@ export default function Body() {
                                         <>
                                             {/* Check if expired */}
                                             {new Date(lookupResult.expiryDate ?? '') < new Date() ? (
-                                                <FaTimes className="text-[4rem] text-red-500 mb-2" />
+                                                <Image src={red} alt="red" />
                                             ) : (
-                                                <FaCheck className="text-[4rem] text-green-600 mb-2" />
+                                                <Image src={greencheck} alt="green" />
                                             )}
 
                                             <p className="text-xl font-bold text-black">{lookupResult.name}</p>
