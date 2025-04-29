@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/input-otp";
 import barcode from "../media/Barcode Gen Z.png";
 import Navbar from "../landingpage/navbar";
-import { FaCheck, FaTimes } from "react-icons/fa";
 import red from "../media/red.svg";
 import greencheck from "../media/greencheck.svg";
 
