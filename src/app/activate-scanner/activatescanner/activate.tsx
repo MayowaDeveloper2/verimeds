@@ -7,8 +7,8 @@ import Quagga from '@ericblade/quagga2';
 import { FaTimes } from "react-icons/fa";
 import { Html5Qrcode } from "html5-qrcode";
 import Navbar from '@/app/landingpage/navbar';
-import greencheck from "../media/greencheck.svg";
-import red from "../media/red.svg";
+import greencheck from "../../media/greencheck.svg";
+import red from "../../media/red.svg";
 import Image from 'next/image';
 
 interface LookupResultType {
